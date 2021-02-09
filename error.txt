@@ -1,0 +1,160 @@
+Python 3.6.9
+Cell executing
+?
+Hyperparameter Tuning using HyperDrive
+TODO: Import Dependencies. In the cell below, import all the dependencies that you will need to complete the project.
+
+?
+[1]
+123456789101112131415161718192021
+print("SDK version:", azureml.core.VERSION)
+0.2s
+SDK version: 1.20.0
+?
+Dataset
+TODO: Get data. In the cell below, write code to access the data you will be using in this project. Remember that the dataset needs to be external.
+
+?
+[2]
+12345678910
+
+ws = Workspace.from_config()
+print(ws.name, ws.resource_group, ws.location, ws.subscription_id, sep = '\n')
+# choose a name for experiment
+experiment_name = 'diabetes'
+
+project_folder = './dibetes-project'
+
+experiment = Experiment(ws, experiment_name)
+experiment
+0.6s
+quick-starts-ws-138275
+aml-quickstarts-138275
+southcentralus
+61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30
+
+?
+[3]
+123456789101112131415161718192021
+from azureml.core.compute import AmlCompute
+from azureml.core.compute import ComputeTarget
+from azureml.core.compute_target import ComputeTargetException
+
+# NOTE: update the cluster name to match the existing cluster
+# Choose a name for your CPU cluster
+amlcompute_cluster_name = "capcpu"
+
+# Verify that cluster does not exist already
+try:
+
+601.3s
+Found existing cluster, use it.
+Succeeded...................................................................................................................
+AmlCompute wait for completion finished
+
+Wait timeout has been reached
+Current provisioning state of AmlCompute is "Succeeded" and current node count is "0"
+?
+[4]
+1234567891011
+# Try to load the dataset from the Workspace. Otherwise, create it from the file
+found = False
+key = "diabetes"
+description_text = "diabetes prdection"
+
+if key in ws.datasets.keys(): 
+        found = True
+        dataset = ws.datasets[key]
+         
+df = dataset.to_pandas_dataframe()
+
+4.3s
+
+?
+Hyperdrive Configuration
+TODO: Explain the model you are using and the reason for chosing the different hyperparameters, termination policy and config settings.
+
+?
+[6]
+111139102345678141520121617181921262223242527282930313233343536
+#TODO: Create your estimator and hyperdrive config
+
+if "training" not in os.listdir():
+    os.mkdir("./training")
+
+estimator = SKLearn(source_directory =
+ './', entry_script='train.py', 
+   compute_target='capcpu')
+
+hyperdrive_run_config = HyperDriveConfig (estimator=estimator,
+
+0.2s
+'SKLearn' estimator is deprecated. Please use 'ScriptRunConfig' from 'azureml.core.script_run_config' with your own defined environment or the AzureML-Tutorial curated environment.
+?
+[10]
+1234567
+#TODO: Submit your experiment
+
+from azureml.widgets import RunDetails
+
+hyperdrive_run = experiment.submit(hyperdrive_run_config)
+
+RunDetails(hyperdrive_run).show()
+3.3s
+WARNING:root:If 'script' has been provided here and a script file name has been specified in 'run_config', 'script' provided in ScriptRunConfig initialization will take precedence.
+Run HD_d5acea89-2c12-4b14-97ee-57b53565c235
+Canceled
+
+View run details
+[2021-02-09T20:04:43.730444][API][INFO]Experiment created
+[2021-02-09T20:04:44.433080][GENERATOR][INFO]Trying to sample '4' jobs from the hyperparameter space
+[2021-02-09T20:04:44.611564][GENERATOR][INFO]Successfully sampled '4' jobs, they will soon be submitted to the execution target.
+[2021-02-09T20:04:45.8403795Z][SCHEDULER][INFO]The execution environment is being prepared. Please be patient as it can take a few minutes.
+[2021-02-09T20:09:50.6942900Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_0'
+[2021-02-09T20:09:50.6968573Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_2'
+[2021-02-09T20:09:50.6955570Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_1'
+[2021-02-09T20:09:50.6935910Z][SCHEDULER][INFO]The execution environment was successfully prepared.
+[2021-02-09T20:09:50.6981616Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_3'
+[2021-02-09T20:09:51.4017093Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_0'
+[2021-02-09T20:09:51.7309738Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_2'
+[2021-02-09T20:09:51.7914582Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_1'
+[2021-02-09T20:09:52.0794981Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_3'
+[2021-02-09T20:14:02.032335][ENFORCER][INFO]Jobs [https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_0, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_1, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_2, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_3] do not contain any metrics with the primary metric name at this moment, policy cannot be applied.
+[2021-02-09T20:14:32.178133][ENFORCER][INFO]Jobs [https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_0, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_1, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_2, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_3] do not contain any metrics with the primary metric name at this moment, policy cannot be applied.
+[2021-02-09T20:15:01.780091][ENFORCER][INFO]Jobs [https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_0, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_1, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_2, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_3] do not contain any metrics with the primary metric name at this moment, policy cannot be applied.
+[2021-02-09T20:15:31.837767][ENFORCER][INFO]Jobs [https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_1, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_2, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_3] do not contain any metrics with the primary metric name at this moment, policy cannot be applied.
+[2021-02-09T20:15:47.960308][GENERATOR][INFO]Trying to sample '4' jobs from the hyperparameter space
+[2021-02-09T20:15:48.113764][GENERATOR][INFO]Successfully sampled '4' jobs, they will soon be submitted to the execution target.
+[2021-02-09T20:15:58.5209943Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_5'
+[2021-02-09T20:15:58.5474846Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_7'
+[2021-02-09T20:15:58.5482471Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_6'
+[2021-02-09T20:15:58.5198838Z][SCHEDULER][INFO]Scheduling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_4'
+[2021-02-09T20:15:59.5846375Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_4'
+[2021-02-09T20:15:59.7309402Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_5'
+[2021-02-09T20:15:59.9361978Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_6'
+[2021-02-09T20:16:00.4278430Z][SCHEDULER][INFO]Successfully scheduled a job. Id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_7'
+[2021-02-09T20:16:01.884700][ENFORCER][INFO]Jobs [https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_4, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_5] do not contain any metrics with the primary metric name at this moment, policy cannot be applied.
+[2021-02-09T20:16:08.652745][CONTROLLER][WARNING]The first 3 jobs have failed. The system is canceling the experiment. Please resolve the issues before resubmitting the experiment.
+[2021-02-09T20:16:08.652659][CONTROLLER][INFO]Experiment has been marked for cancellation.
+[2021-02-09T20:16:30.9061665Z][SCHEDULER][INFO]Cancelling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_5'
+[2021-02-09T20:16:30.9056184Z][SCHEDULER][INFO]Cancelling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_4'
+[2021-02-09T20:16:30.9183308Z][SCHEDULER][INFO]Cancelling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_6'
+[2021-02-09T20:16:30.9258645Z][SCHEDULER][INFO]Cancelling job, id='HD_d5acea89-2c12-4b14-97ee-57b53565c235_7'
+[2021-02-09T20:16:31.8735225Z][SCHEDULER][INFO]Updating job statuses to cancelled: [(job id = 'HD_d5acea89-2c12-4b14-97ee-57b53565c235_4', previous status = 'RUNNING'), (job id = 'HD_d5acea89-2c12-4b14-97ee-57b53565c235_5', previous status = 'RUNNING'), (job id = 'HD_d5acea89-2c12-4b14-97ee-57b53565c235_6', previous status = 'RUNNING'), (job id = 'HD_d5acea89-2c12-4b14-97ee-57b53565c235_7', previous status = 'RUNNING')]
+[2021-02-09T20:16:32.175099][ENFORCER][INFO]Jobs [https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_4, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_5, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_6, https://southcentralus.experiments.azureml.net/subscriptions/61c5c3f0-6dc7-4ed9-a7f3-c704b20e3b30/resourceGroups/aml-quickstarts-138275/providers/Microsoft.MachineLearningServices/workspaces/quick-starts-ws-138275/experiments/**SCRUBBED**/runs/HD_d5acea89-2c12-4b14-97ee-57b53565c235_7] do not contain any metrics with the primary metric name at this moment, policy cannot be applied.
+[2021-02-09T20:16:39.475352][CONTROLLER][WARNING]User errors were found in at least one of the child runs.
+[2021-02-09T20:17:10.054967][CONTROLLER][WARNING]User errors were found in at least one of the child runs.
+[2021-02-09T20:17:11.064806][CONTROLLER][INFO]Experiment was 'ExperimentStatus.RUNNING', is 'ExperimentStatus.CANCELLED'.
+
+Error occurred: User errors were found in at least one of the child runs.
+?
+Run Details
+OPTIONAL: Write about the different models trained and their performance. Why do you think some models did better than others?
+
+TODO: In the cell below, use the RunDetails widget to show the different experiments.
+
+?
+[11]
+1
+hyperdrive_run.wait_for_completion(show_output=True)
+0.3s
