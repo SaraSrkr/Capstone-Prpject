@@ -1,5 +1,5 @@
 
-# Dibetes Prediction Model
+# Dibetes Prediction Models
 
 The project uses external dataset to operate AutoML model and save the best run model from this experiment. Then use the same dataset to operate Hyperdrive model and save best run model from it also. 
 The second step is comparing between two final models’ performance and choose the best performance to deploy it as a web service.
