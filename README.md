@@ -23,7 +23,8 @@ The python code will loud data saved in the project folder in my Github account 
 Then register the dataset in Azure workspace by python code.  
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+The overview of the `automl` settings configuration I used for this experiment
+Use 
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
