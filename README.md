@@ -34,10 +34,24 @@ AutoMl experiment to classify the dataset records
                          label_column_name="Outcome",  
                          
 ### Results
-The Accuracy of AoutML is 0.783
+## The Accuracy of AoutML is 0.783
  <img src="imges/Automl model accuracy.png">
   
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+  ________________________________________________________________________________________________________________________________
+  
+## The Rundetailes widget of AutoML
+<img src="imges/Automl rundetails.png">
+<img src="imges/Automl rundetails2.png">
+
+________________________________________________________________________________________________________________________________
+
+## The best model of AutoML
+
+<img src="imges/Automl best run id.png">
+
+<img src="imges/Automl model accuracy.png">
+
+________________________________________________________________________________________________________________________________
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
