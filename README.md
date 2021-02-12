@@ -4,6 +4,9 @@
 The project uses external dataset to operate AutoML model and save the best run model from this experiment. Then use the same dataset to operate Hyperdrive model and save best run model from it also. 
 The second step is comparing between two final models’ performance and choose the best performance to deploy it as a web service.
 The last step is to interact with the deployed  model endpoint and post sample data to test it’s work and receives results.
+<img src="imges/2.jpg" >
+
+
 
 ## Dataset
 
