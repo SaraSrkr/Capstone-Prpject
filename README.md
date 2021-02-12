@@ -11,13 +11,16 @@ The last step is to interact with the deployed  model endpoint and post sample d
 ## Dataset
 
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from.
-
+The dibetes dataset from Kaggle. It is consist of 768 records and 9 features whish are Pregnancies,	Glucose, BloodPressure, SkinThickness,	Insulin,	BMI	DiabetesPedigreeFunction,	Age, Outcome
+https://www.kaggle.com/saurabh00007/diabetescsv
+  
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+The objective is to predict based on diagnostic measurements whether a patient has diabetes or not. 
+The Outcome binary result 0 or 1 express if the person has dibetes or not.
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+The python code will loud data saved in the project folder in my Github account by URL.
+Then register the dataset in Azure workspace by python code.  
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
