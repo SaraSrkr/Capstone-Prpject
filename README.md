@@ -34,7 +34,7 @@ AutoMl experiment to classify the dataset records
                          label_column_name="Outcome",  
                          
 ### Results
-## The Accuracy of AoutML is 0.783
+## The Accuracy of voting enasamble is 0.783
  <img src="imges/Automl model accuracy.png">
   
   ________________________________________________________________________________________________________________________________
@@ -54,7 +54,13 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________________
 
 ## Hyperparameter Tuning
-*TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
+Run Hyperdrive model with Logistic Regression using Sklearn with hyperparmeter c: Inverse of regularization strength and max_iter which is the number of iterations through all classes.
+
+# parameter sampler
+Chose the random sampling because it more efficient to move randomly over the space than use grid sampling which it has to go through all possible value. Random way allow adding range of parameters and it is better than put specific numbers may they aren’t best choice.
+
+# Early stopping policy
+Use BanditPolicy to defined after how much certain number of failures the experiment will stop looking for answers 
 
 
 ### Results
