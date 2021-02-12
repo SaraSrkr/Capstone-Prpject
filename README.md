@@ -64,9 +64,18 @@ Use BanditPolicy to defined after how much certain number of failures the experi
 
 
 ### Results
-*TODO*: What are the results you got with your model? What were the parameters of the model? How could you have improved it?
+The hyperdrive model Accuracy: 0.7662337662337663 and the parmeters ['--C', '0.1', '--max_iter', '154']
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+## Hyperdrive rundetails
+
+<img src="imges/Hyperdrive rundetails.png">
+
+<img src="imges/Hyperdrive comleted.png">
+
+
+## Hyperdrive best run id
+
+<img src="imges/Hyperdrive best run id.png">
 
 ## Model Deployment
 *TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
