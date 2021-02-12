@@ -34,8 +34,9 @@ AutoMl experiment to classify the dataset records
                          label_column_name="Outcome",  
                          
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
-
+The Accuracy of AoutML is 0.783
+ <img src="imges/Automl model accuracy.png">
+  
 *TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
 ## Hyperparameter Tuning
