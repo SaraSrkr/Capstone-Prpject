@@ -1,10 +1,9 @@
 
 # Dibetes Prediction Model
 
-The project 
-
-## Project Set Up and Installation
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
+The project uses external dataset to operate AutoML model and save the best run model from this experiment. Then use the same dataset to operate Hyperdrive model and save best run model from it also. 
+The second step is comparing between two final models’ performance and choose the best performance to deploy it as a web service.
+The last step is to interact with the deployed  model endpoint and post sample data to test it’s work and receives results.
 
 ## Dataset
 
