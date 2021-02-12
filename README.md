@@ -6,6 +6,11 @@ The second step is comparing between two final models’ performance and choose 
 The last step is to interact with the deployed  model endpoint and post sample data to test it’s work and receives results.
 <img src="imges/2.jpg" >
 
+## future work 
+### Try Using the project codes with different algorithem to find better results
+
+### Try Using the project codes with different dataset to solve anothe problem 
+
 
 
 ## Dataset
@@ -78,13 +83,16 @@ The hyperdrive model Accuracy: 0.7662337662337663 and the parmeters ['--C', '0.1
 <img src="imges/Hyperdrive best run id.png">
 
 ## Model Deployment
-*TODO*: Give an overview of the deployed model and instructions on how to query the endpoint with a sample input.
+After comparing the results of AutoML and Hyperdrive models. Deployed AutoML model as a webservice and make the enable insights and auth_enabled set to True for retrieve keys needed to post data to the model endpoint and receive results
+
+## the web service status
+<img src="imges/endpoint model status.png">
+
+<img src="imges/model responce.png">
+
 
 ## Screen Recording
-*TODO* Provide a link to a screen recording of the project in action. Remember that the screencast should demonstrate:
-- A working model
-- Demo of the deployed  model
-- Demo of a sample request sent to the endpoint and its response
 
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
+https://drive.google.com/file/d/1-l5Or5Ut_bFdNT3VmFY5PrgL2DnD93jj/view?usp=sharing
+
+
