@@ -120,9 +120,7 @@ and make the enable insights and auth_enabled set to True for retrieve keys need
             "DiabetesPedigreeFunction": 0.352,
             "Age": 33,
     
-<a/>
 ## the results getting from this post showing in below picture
-
 <img src="imges/model responce.png">
 
 ## the web service status is healthy as in picutre 
