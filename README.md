@@ -6,11 +6,6 @@ The second step is comparing between two final models’ performance and choose 
 The last step is to interact with the deployed  model endpoint and post sample data to test it’s work and receives results.
 <img src="imges/2.jpg" >
 
-## future work 
-### Try Using the project codes with different algorithem to find better results
-
-### Try Using the project codes with different dataset to solve anothe problem 
-
 
 
 ## Dataset
@@ -39,9 +34,9 @@ AutoMl experiment to classify the dataset records
                          task = "classification",
                          label_column_name="Outcome", it has binary result 0 or 1 express if the person has diabetes or not so we will use the other features to predict the Outcome column.
                          
-### Results
-## The Accuracy of voting enasamble is 0.783
-# The autoML model paremters are : 'estimators': ['32', '9', '1', '28', '31', '30', '21'],
+## Results
+### The Accuracy of voting enasamble is 0.783
+### The autoML model paremters are : 'estimators': ['32', '9', '1', '28', '31', '30', '21'],
  'weights': [0.14285714285714285,
              0.14285714285714285,
              0.14285714285714285,
@@ -81,8 +76,9 @@ Chose the random sampling because it more efficient to move randomly over the sp
 Use BanditPolicy to defined after how much certain number of failures the experiment will stop looking for answers 
 
 
-### Results
-The hyperdrive model Accuracy: 0.7662337662337663 and the parmeters ['--C', '0.1', '--max_iter', '154']
+# Results
+## The hyperdrive model Accuracy: 0.7662337662337663
+## the best run hyperparmeter value are  ['--C', '0.1', '--max_iter', '154']
 
 ## Hyperdrive rundetails
 
@@ -96,16 +92,52 @@ The hyperdrive model Accuracy: 0.7662337662337663 and the parmeters ['--C', '0.1
 <img src="imges/Hyperdrive best run id.png">
 
 ## Model Deployment
-After comparing the results of AutoML and Hyperdrive models. Deployed AutoML model as a webservice and make the enable insights and auth_enabled set to True for retrieve keys needed to post data to the model endpoint and receive results
+After comparing the results of AutoML and Hyperdrive models.
+<a/>________________________________________________________________________________________________________________________________
 
-## the web service status
-<img src="imges/endpoint model status.png">
+Deployed AutoML model as a webservice with name 'automl-sample-diabetes'
+and make the enable insights and auth_enabled set to True for retrieve keys needed to post data to the model endpoint and receive results
+### used the primary key and score url and two different data sample to test the deployed model 
+
+### The Two sets of data to score, so we get two results back
+
+            "Pregnancies": 5,
+            "Glucose": 151,
+            "BloodPressure": 60,
+            "SkinThickness": 45,
+            "Insulin": 0,
+            "BMI":33.6,
+            "DiabetesPedigreeFunction": 0.627,
+            "Age":55,
+                       
+         
+            "Pregnancies": 17,
+            "Glucose": 85,
+            "BloodPressure": 63,
+            "SkinThickness": 29,
+            "Insulin": 94,
+            "BMI": 28.9,
+            "DiabetesPedigreeFunction": 0.352,
+            "Age": 33,
+    
+<a/>
+### the results getting from this post showing in below picture
 
 <img src="imges/model responce.png">
+
+## the web service status is healthy as in picutre 
+<img src="imges/endpoint model status.png">
+
 
 
 ## Screen Recording
 
 https://drive.google.com/file/d/1-l5Or5Ut_bFdNT3VmFY5PrgL2DnD93jj/view?usp=sharing
+
+
+## future work 
+### Try Using the project codes with different algorithem to find better results
+
+### Try Using the project codes with different dataset to solve anothe problem 
 
 
