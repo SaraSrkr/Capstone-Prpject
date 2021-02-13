@@ -30,25 +30,37 @@ Then register the dataset in Azure workspace by python code.
 ## Automated ML
 The overview of the `automl` settings configuration I used for this experiment
 AutoMl experiment to classify the dataset records 
-1- Create cluster compute "capcpu">
-2- creating the expermint in the folder project and load data to the workspace.
-3- Set the outml sitting to "experiment_timeout_minutes": 30
+##
+1. Create cluster compute "capcpu"
+2. creating the expermint in the folder project and load data to the workspace.
+3. Set the automl config sitting to "experiment_timeout_minutes": 30 the expermint will stop after 30 minutes
                          "max_concurrent_iterations": 3 used this number of itration to be less than compute nodes
-                         "primary_metric" : 'accuracy'
+                         "primary_metric" : 'accuracy'chose the same algorithem the automl and hyperdrive mpdels
                          task = "classification",
-                         label_column_name="Outcome",  
+                         label_column_name="Outcome", it has binary result 0 or 1 express if the person has diabetes or not so we will use the other features to predict the Outcome column.
                          
 ### Results
 ## The Accuracy of voting enasamble is 0.783
+# The autoML model paremters are : 'estimators': ['32', '9', '1', '28', '31', '30', '21'],
+ 'weights': [0.14285714285714285,
+             0.14285714285714285,
+             0.14285714285714285,
+             0.14285714285714285,
+             0.14285714285714285,
+             0.14285714285714285,
+             0.14285714285714285]}
+  
+  <a/>
+## The picture show the accuracy of best run model
  <img src="imges/Automl model accuracy.png">
   
-  ________________________________________________________________________________________________________________________________
+ <a/>_____________________________________________________________________________________________________________________________
   
 ## The Rundetailes widget of AutoML
 <img src="imges/Automl rundetails.png">
 <img src="imges/Automl rundetails2.png">
 
-________________________________________________________________________________________________________________________________
+<a/>________________________________________________________________________________________________________________________________
 
 ## The best model of AutoML
 
@@ -59,7 +71,8 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________________
 
 ## Hyperparameter Tuning
-Run Hyperdrive model with Logistic Regression using Sklearn with hyperparmeter c: Inverse of regularization strength and max_iter which is the number of iterations through all classes.
+Run Hyperdrive model with Logistic Regression using Sklearn with hyperparmeter c: Inverse of regularization strength (its range choicing from (0.01,0.03,0.05,0.1))
+and max_iter which is the number of iterations through all classes the range between 100-200.
 
 # parameter sampler
 Chose the random sampling because it more efficient to move randomly over the space than use grid sampling which it has to go through all possible value. Random way allow adding range of parameters and it is better than put specific numbers may they aren’t best choice.
